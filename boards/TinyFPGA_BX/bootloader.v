@@ -7,6 +7,13 @@ module bootloader (
 
   output pin_led,
 
+  output pin_19,
+  output pin_20,
+  output pin_21,
+  output pin_22,
+  output pin_23,
+  output pin_24,
+
   input  pin_29_miso,
   output pin_30_cs,
   output pin_31_mosi,
@@ -22,6 +29,13 @@ module bootloader (
   wire clk_48mhz;
   wire lock;
   wire reset = !lock;
+
+  assign pin_19 = 0;
+  assign pin_20 = 0;
+  assign pin_21 = 0;
+  assign pin_22 = 0;
+  assign pin_23 = 0;
+  assign pin_24 = 0;
 
   SB_PLL40_CORE #(
     .DIVR(4'b0000),

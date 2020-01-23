@@ -45,4 +45,3 @@ set_io -nowarn pin_usbp B4
 set_io -nowarn pin_usbn A4
 set_io -nowarn pin_pu A3
 set_io -nowarn pin_clk B2
-

@@ -1,0 +1,20 @@
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ ÿ
+ader": "TinyFPGA USB Bootloader", 
+      "update": "https://tinyfpga.com/update/tinyfpga-bx", 
+      "addrmap": {
+        "userimage": "0x28000-0x50000", 
+        "bootloader": "0x000a0-0x28000", 
+        "userdata": "0x50000-0x100000"
+      }
+    }
+  }
+
+ader": "TinyFPGA USB Bootloader", 
+      "update": "https://tinyfpga.com/update/tinyfpga-bx", 
+      "addrmap": {
+        "userimage": "0x28000-0x50000", 
+        "bootloader": "0x000a0-0x28000", 
+        "userdata": "0x50000-0x100000"
+      }
+    }
+  }

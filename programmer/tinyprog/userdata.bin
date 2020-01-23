@@ -1,0 +1,1 @@
+{"boardmeta":{"name":"TinyFPGA BX","fpga":"ice40lp8k-cm81","hver":"1.0.0","uuid":"c47268cd-32d9-402f-8900-e5d10262dad2"}}{"bootmeta":{"bootloader":"TinyFPGA USB Bootloader","bver":"1.0.1","update":"https://tinyfpga.com/update/tinyfpga-bx","addrmap":{"bootloader":"0x000a0-0x28000","userimage":"0x28000-0x50000","userdata":"0x50000-0x100000"}}}

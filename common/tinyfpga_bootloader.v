@@ -27,7 +27,7 @@ module tinyfpga_bootloader (
   // function.
   output boot
 );
- 
+
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   ////////
@@ -37,7 +37,7 @@ module tinyfpga_bootloader (
   ////////////////////////////////////////////////////////////////////////////////
   reg [7:0] led_pwm = 0;
   reg [7:0] pwm_cnt = 0;
-  
+
   reg [5:0] ns_cnt = 0;
   wire ns_rst = (ns_cnt == 48);
   always @(posedge clk) begin
@@ -47,7 +47,7 @@ module tinyfpga_bootloader (
       ns_cnt <= ns_cnt + 1'b1;
     end
   end
-  
+
   reg [9:0] us_cnt = 0;
   wire us_rst = (us_cnt == 1000);
   always @(posedge clk) begin
@@ -57,27 +57,27 @@ module tinyfpga_bootloader (
       us_cnt <= us_cnt + 1'b1;
     end
   end
-  
+
   reg count_down = 0;
   always @(posedge clk) begin
     if (us_rst) begin
-      if (count_down) begin 
+      if (count_down) begin
         if (led_pwm == 0) begin
           count_down <= 0;
         end else begin
-          led_pwm <= led_pwm - 1'b1; 
+          led_pwm <= led_pwm - 1'b1;
         end
       end else begin
         if (led_pwm == 255) begin
           count_down <= 1;
         end else begin
-          led_pwm <= led_pwm + 1'b1; 
+          led_pwm <= led_pwm + 1'b1;
         end
       end
     end
   end
-  always @(posedge clk) pwm_cnt <= pwm_cnt + 1'b1; 
-  assign led = led_pwm > pwm_cnt;  
+  always @(posedge clk) pwm_cnt <= pwm_cnt + 1'b1;
+  assign led = led_pwm > pwm_cnt;
 
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -141,7 +141,7 @@ module tinyfpga_bootloader (
     .reset(reset),
     .dev_addr(dev_addr),
 
-    // out endpoint interface 
+    // out endpoint interface
     .out_ep_req(ctrl_out_ep_req),
     .out_ep_grant(ctrl_out_ep_grant),
     .out_ep_data_avail(ctrl_out_ep_data_avail),
@@ -152,7 +152,7 @@ module tinyfpga_bootloader (
     .out_ep_acked(ctrl_out_ep_acked),
 
 
-    // in endpoint interface 
+    // in endpoint interface
     .in_ep_req(ctrl_in_ep_req),
     .in_ep_grant(ctrl_in_ep_grant),
     .in_ep_data_free(ctrl_in_ep_data_free),
@@ -167,7 +167,7 @@ module tinyfpga_bootloader (
     .clk(clk),
     .reset(reset),
 
-    // out endpoint interface 
+    // out endpoint interface
     .out_ep_req(serial_out_ep_req),
     .out_ep_grant(serial_out_ep_grant),
     .out_ep_data_avail(serial_out_ep_data_avail),
@@ -177,7 +177,7 @@ module tinyfpga_bootloader (
     .out_ep_stall(serial_out_ep_stall),
     .out_ep_acked(serial_out_ep_acked),
 
-    // in endpoint interface 
+    // in endpoint interface
     .in_ep_req(serial_in_ep_req),
     .in_ep_grant(serial_in_ep_grant),
     .in_ep_data_free(serial_in_ep_data_free),
@@ -187,7 +187,7 @@ module tinyfpga_bootloader (
     .in_ep_stall(serial_in_ep_stall),
     .in_ep_acked(serial_in_ep_acked),
 
-    // spi interface 
+    // spi interface
     .spi_cs_b(spi_cs),
     .spi_sck(spi_sck),
     .spi_mosi(spi_mosi),
@@ -217,7 +217,7 @@ module tinyfpga_bootloader (
 
     .dev_addr(dev_addr),
 
-    // out endpoint interfaces 
+    // out endpoint interfaces
     .out_ep_req({serial_out_ep_req, ctrl_out_ep_req}),
     .out_ep_grant({serial_out_ep_grant, ctrl_out_ep_grant}),
     .out_ep_data_avail({serial_out_ep_data_avail, ctrl_out_ep_data_avail}),
@@ -227,7 +227,7 @@ module tinyfpga_bootloader (
     .out_ep_stall({serial_out_ep_stall, ctrl_out_ep_stall}),
     .out_ep_acked({serial_out_ep_acked, ctrl_out_ep_acked}),
 
-    // in endpoint interfaces 
+    // in endpoint interfaces
     .in_ep_req({1'b0, serial_in_ep_req, ctrl_in_ep_req}),
     .in_ep_grant({nak_in_ep_grant, serial_in_ep_grant, ctrl_in_ep_grant}),
     .in_ep_data_free({nak_in_ep_data_free, serial_in_ep_data_free, ctrl_in_ep_data_free}),
@@ -242,7 +242,7 @@ module tinyfpga_bootloader (
     .frame_index(frame_index)
   );
 
-  
+
 
   ////////////////////////////////////////////////////////////////////////////////
   // host presence detection
@@ -256,7 +256,7 @@ module tinyfpga_bootloader (
       host_presence_timer <= host_presence_timer + 1;
     end
 
-    if (host_presence_timer > 196000000) begin
+    if (host_presence_timer > 24500000) begin
       host_presence_timeout <= 1;
     end
   end
