@@ -7,12 +7,16 @@ module bootloader (
 
   output pin_led,
 
-  output pin_19,
-  output pin_20,
-  output pin_21,
-  output pin_22,
-  output pin_23,
-  output pin_24,
+  input HALL1,
+  input HALL2,
+  input HALL3,
+
+  output INLC,
+  output INHC,
+  output INLB,
+  output INHB,
+  output INLA,
+  output INHA,
 
   input  pin_29_miso,
   output pin_30_cs,
@@ -30,12 +34,38 @@ module bootloader (
   wire lock;
   wire reset = !lock;
 
-  assign pin_19 = 0;
-  assign pin_20 = 0;
-  assign pin_21 = 0;
-  assign pin_22 = 0;
-  assign pin_23 = 0;
-  assign pin_24 = 0;
+  wire hall1, hall2, hall3;
+  // PULLUP for hall sensors
+  SB_IO #(
+    .PIN_TYPE(6'b 0000_01),
+    .PULLUP(1'b 1)
+  ) hall1_input(
+    .PACKAGE_PIN(HALL1),
+    .D_IN_0(hall1)
+  );
+
+  SB_IO #(
+    .PIN_TYPE(6'b 0000_01),
+    .PULLUP(1'b 1)
+  ) hall2_input(
+    .PACKAGE_PIN(HALL2),
+    .D_IN_0(hall2)
+  );
+
+  SB_IO #(
+    .PIN_TYPE(6'b 0000_01),
+    .PULLUP(1'b 1)
+  ) hall3_input(
+    .PACKAGE_PIN(HALL3),
+    .D_IN_0(hall3)
+  );
+
+  assign INLA = hall1;
+  assign INHB = hall2;
+  assign INLB = hall3;
+  assign INHA = 0;
+  assign INHC = 0;
+  assign INLC = 1;
 
   SB_PLL40_CORE #(
     .DIVR(4'b0000),
