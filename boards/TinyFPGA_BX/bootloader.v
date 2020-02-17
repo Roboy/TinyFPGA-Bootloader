@@ -7,6 +7,9 @@ module bootloader (
 
   output pin_led,
 
+  input SCL,
+  input SDA,
+
   input HALL1,
   input HALL2,
   input HALL3,
@@ -34,6 +37,25 @@ module bootloader (
   wire lock;
   wire reset = !lock;
 
+  wire sda,scl;
+
+  // PULLUP for i2c
+  SB_IO #(
+    .PIN_TYPE(6'b 0000_01),
+    .PULLUP(1'b 1)
+  ) sda_input(
+    .PACKAGE_PIN(SDA),
+    .D_IN_0(sda)
+  );
+
+  SB_IO #(
+    .PIN_TYPE(6'b 0000_01),
+    .PULLUP(1'b 1)
+  ) scl_input(
+    .PACKAGE_PIN(SCL),
+    .D_IN_0(scl)
+  );
+
   wire hall1, hall2, hall3;
   // PULLUP for hall sensors
   SB_IO #(
@@ -60,12 +82,12 @@ module bootloader (
     .D_IN_0(hall3)
   );
 
-  assign INLA = hall1;
-  assign INHB = hall2;
-  assign INLB = hall3;
+  assign INLA = 0;
+  assign INHB = 0;
+  assign INLB = 0;
   assign INHA = 0;
   assign INHC = 0;
-  assign INLC = 1;
+  assign INLC = 0;
 
   SB_PLL40_CORE #(
     .DIVR(4'b0000),
